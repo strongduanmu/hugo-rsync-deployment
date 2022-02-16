@@ -8,6 +8,7 @@ if [[ -z "$GITHUB_WORKSPACE" ]]; then
 fi
 
 mkdir -p "${HOME}/.ssh"
+cat ${DEPLOY_KEY}
 echo "${DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa_deploy"
 chmod 600 "${HOME}/.ssh/id_rsa_deploy"
   
