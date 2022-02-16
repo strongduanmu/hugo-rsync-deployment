@@ -6,6 +6,9 @@ branding:
   color: 'blue'
 
 inputs:
+  doc-dirs:
+    description: 'doc directorys'
+    required: true
   hugo-arguments:
     description: 'Hugo arguments'
     required: false
@@ -19,5 +22,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.doc-dirs }}
     - ${{ inputs.hugo-arguments }}
     - ${{ inputs.rsync-arguments }}
