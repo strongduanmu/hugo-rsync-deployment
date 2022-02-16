@@ -30,7 +30,7 @@ for dir in `echo ${doc_dirs}`; do
   sh -c "
     rsync $3 \
     -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
-    ${GITHUB_WORKSPACE}/${dir}/public \
+    ${GITHUB_WORKSPACE}/${dir}/public/ \
     ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}/${dir}
   "
 
