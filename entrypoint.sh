@@ -7,21 +7,28 @@ if [[ -z "$GITHUB_WORKSPACE" ]]; then
   exit 1
 fi
 
-cd "${GITHUB_WORKSPACE}/src"
-
-hugo version
-hugo $1
-
-mkdir "${HOME}/.ssh"
-echo "${VPS_DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa_deploy"
+mkdir -p "${HOME}/.ssh"
+echo "${DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa_deploy"
 chmod 600 "${HOME}/.ssh/id_rsa_deploy"
+  
+  
+#eg: "doc1 doc2"
+doc_dirs=$1
 
-rsync --version
-sh -c "
-rsync $2 \
-  -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
-  ${GITHUB_WORKSPACE}/src/public \
-  ${VPS_DEPLOY_USER}@${VPS_DEPLOY_HOST}:${VPS_DEPLOY_DEST}
-"
+for dir in `echo ${doc_dirs}`; do
+  cd "${GITHUB_WORKSPACE}/${dir}"
+
+  hugo version
+  hugo $2
+
+  rsync --version
+  sh -c "
+    rsync $3 \
+    -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
+    ${GITHUB_WORKSPACE}/src/public \
+    ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}
+  "
+
+done;
 
 exit 0
