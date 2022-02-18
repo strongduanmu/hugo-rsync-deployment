@@ -19,12 +19,14 @@ chmod 600 "${HOME}/.ssh/id_rsa_deploy"
 doc_dirs=$1
 
 for dir in `echo ${doc_dirs}`; do
+  chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
+  
   cd "${GITHUB_WORKSPACE}/${dir}"
-
+  
   hugo version
   hugo $2
   
-  chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
+  
 
   rsync --version
   sh -c "
