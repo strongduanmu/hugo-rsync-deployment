@@ -7,6 +7,8 @@ if [[ -z "$GITHUB_WORKSPACE" ]]; then
   exit 1
 fi
 
+apt-get update && apt-get install -y gettext
+
 mkdir -p "${HOME}/.ssh"
 
 echo "${DEPLOY_KEY}"
