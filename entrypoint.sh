@@ -21,7 +21,7 @@ doc_version=$1
 doc_dirs=$2
 
 export ZH_VER_DIR="content.zh/${doc_version}"
-export EN_VER_DIR="content"
+export EN_VER_DIR="content/${doc_version}"
 export VERSION="${doc_version}"
 
 for dir in ${doc_dirs}; do
