@@ -9,6 +9,10 @@ inputs:
   doc-dirs:
     description: 'doc directorys'
     required: true
+  doc-version:
+    description: 'doc version'
+    required: false
+    default: 'v1'
   hugo-arguments:
     description: 'Hugo arguments'
     required: false
@@ -22,6 +26,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.doc-version }}
     - ${{ inputs.doc-dirs }}
     - ${{ inputs.hugo-arguments }}
     - ${{ inputs.rsync-arguments }}
