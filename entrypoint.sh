@@ -32,7 +32,7 @@ for dir in ${doc_dirs}; do
   hugo version
   hugo $3
   
-  
+  chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
 
   rsync --version
   sh -c "
