@@ -16,24 +16,29 @@ chmod 600 "${HOME}/.ssh/id_rsa_deploy"
   
   
 #eg: "doc1 doc2"
-doc_dirs=$1
+doc_version=$1
+doc_dirs=$2
 
-for dir in `echo ${doc_dirs}`; do
+export ZH_VER_DIR="content.zh/${doc_version}"
+export EN_VER_DIR="content"
+export VERSION="${doc_version}"
+
+for dir in ${doc_dirs}; do
   chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
-  
   cd "${GITHUB_WORKSPACE}/${dir}"
+  envsubst < "config.toml.template" > config.toml
   
   hugo version
-  hugo $2
+  hugo $3
   
   
 
   rsync --version
   sh -c "
-    rsync $3 \
+    rsync $4 \
     -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
     ${GITHUB_WORKSPACE}/${dir}/public/ \
-    ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}/${dir}
+    ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}/${dir}/${VERSION}
   "
 
 done;
