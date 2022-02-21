@@ -13,6 +13,7 @@ LABEL "repository"="https://github.com/ronvanderheijden/hugo-rsync-deployment"
 LABEL "homepage"="https://ronvanderheijden.nl/"
 
 RUN apk add --no-cache --upgrade --no-progress \
+        gettext \
         hugo \
         openssh \
         rsync
