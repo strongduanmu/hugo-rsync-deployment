@@ -24,14 +24,14 @@ export EN_VER_DIR="content/${doc_version}"
 export VERSION="${doc_version}"
 
 for dir in ${doc_dirs}; do
-  chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
+  #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
   cd "${GITHUB_WORKSPACE}/${dir}"
   envsubst < "config.toml.template" > config.toml
   
   hugo version
   hugo $3
   
-  chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
+  #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
 
   rsync --version
   sh -c "
