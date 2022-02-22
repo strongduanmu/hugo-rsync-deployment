@@ -27,6 +27,7 @@ for dir in ${doc_dirs}; do
   #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
   cd "${GITHUB_WORKSPACE}/${dir}"
   envsubst < "config.toml.template" > config.toml
+  cat config.toml
   
   hugo version
   hugo $3
