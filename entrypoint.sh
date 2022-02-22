@@ -7,10 +7,9 @@ if [[ -z "$GITHUB_WORKSPACE" ]]; then
   exit 1
 fi
 
-
+export HOME="/home/appuser"
 mkdir -p "${HOME}/.ssh"
 
-echo "${DEPLOY_KEY}"
 
 echo "${DEPLOY_KEY}" > "${HOME}/.ssh/id_rsa_deploy"
 chmod 600 "${HOME}/.ssh/id_rsa_deploy"
