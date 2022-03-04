@@ -13,6 +13,10 @@ inputs:
     description: 'doc version'
     required: false
     default: 'v1'
+  doc-domain:
+    description: 'doc domain'
+    required: true,
+    default: ''
   hugo-arguments:
     description: 'Hugo arguments'
     required: false
@@ -28,5 +32,6 @@ runs:
   args:
     - ${{ inputs.doc-version }}
     - ${{ inputs.doc-dirs }}
+    - ${{ inputs.doc-domain }}
     - ${{ inputs.hugo-arguments }}
     - ${{ inputs.rsync-arguments }}
