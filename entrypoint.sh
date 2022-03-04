@@ -18,10 +18,12 @@ chmod 600 "${HOME}/.ssh/id_rsa_deploy"
 #eg: "doc1 doc2"
 doc_version=$1
 doc_dirs=$2
+doc_domain=$3
 
 export ZH_VER_DIR="content.zh/${doc_version}"
 export EN_VER_DIR="content/${doc_version}"
 export VERSION="${doc_version}"
+export DOC_DOMAIN="${doc_domain}"
 
 for dir in ${doc_dirs}; do
   #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
