@@ -34,6 +34,7 @@ for dir in ${doc_dirs}; do
   
   #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
 
+  ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} "mkdir -p ${DEPLOY_DEST}/${dir}/${VERSION}"
   rsync --version
   sh -c "
     rsync $4 \
