@@ -32,14 +32,14 @@ for dir in ${doc_dirs}; do
   cat config.toml
   
   hugo version
-  hugo $3
+  hugo $4
   
   #chown 1000:1000 -R "${GITHUB_WORKSPACE}/${dir}"
 
   ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} "mkdir -p ${DEPLOY_DEST}/${dir}/${VERSION}"
   rsync --version
   sh -c "
-    rsync $4 \
+    rsync $5 \
     -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
     ${GITHUB_WORKSPACE}/${dir}/public/ \
     ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}/${dir}/${VERSION}
