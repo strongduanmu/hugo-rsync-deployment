@@ -13,7 +13,7 @@ LABEL "repository"="https://github.com/ronvanderheijden/hugo-rsync-deployment"
 LABEL "homepage"="https://ronvanderheijden.nl/"
 
 RUN apt-get update
-RUN apt-get install \
+RUN apt-get install -y \
         gettext \
         hugo \
         openssh-client \
