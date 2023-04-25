@@ -38,12 +38,11 @@ for dir in ${doc_dirs}; do
 
   ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no ${DEPLOY_USER}@${DEPLOY_HOST} "mkdir -p ${DEPLOY_DEST}/${dir}/${VERSION}"
   rsync --version
-  sh -c "
-    rsync $5 \
+  rsync $5 -v \
     -e 'ssh -i ${HOME}/.ssh/id_rsa_deploy -o StrictHostKeyChecking=no' \
     ${GITHUB_WORKSPACE}/${dir}/public/ \
     ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_DEST}/${dir}/${VERSION}
-  "
+ 
 
 done;
 
