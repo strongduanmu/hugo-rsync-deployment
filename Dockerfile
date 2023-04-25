@@ -19,9 +19,10 @@ RUN apk add --no-cache --upgrade --no-progress \
         rsync
 
 ADD entrypoint.sh /
+RUN chmod 777 /tmp
 RUN chmod +x /entrypoint.sh
 
-#RUN addgroup -S appuser -g 1000 && adduser -u 1000 -S appuser -G appuser
-#USER appuser
+RUN addgroup -S appuser -g 1000 && adduser -u 1000 -S appuser -G appuser
+USER appuser
 
 ENTRYPOINT ["/entrypoint.sh"]
