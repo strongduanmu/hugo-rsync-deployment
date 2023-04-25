@@ -23,7 +23,7 @@ ADD entrypoint.sh /
 RUN chmod 777 /tmp
 RUN chmod +x /entrypoint.sh
 
-RUN addgroup -S appuser -g 1000 && adduser -u 1000 -S appuser -G appuser
+RUN addgroup --gid 1000 && adduser --uid 1000 --gid 1000
 USER appuser
 
 ENTRYPOINT ["/entrypoint.sh"]
