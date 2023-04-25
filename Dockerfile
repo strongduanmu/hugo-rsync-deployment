@@ -1,4 +1,4 @@
-FROM alpine:3.12.0
+FROM debian:stable-20230411-slim
 
 LABEL "name"="Hugo rsync deployment"
 LABEL "maintainer"="Ron van der Heijden <r.heijden@live.nl>"
@@ -12,7 +12,8 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="https://github.com/ronvanderheijden/hugo-rsync-deployment"
 LABEL "homepage"="https://ronvanderheijden.nl/"
 
-RUN apk add --no-cache --upgrade --no-progress \
+RUN apt-get update
+RUN apt-get install \
         gettext \
         hugo \
         openssh \
