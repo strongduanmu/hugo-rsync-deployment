@@ -7,7 +7,7 @@ if [[ -z "$GITHUB_WORKSPACE" ]]; then
   exit 1
 fi
 
-export HOME="/home/appuser"
+#export HOME="/home/appuser"
 mkdir -p "${HOME}/.ssh"
 
 
