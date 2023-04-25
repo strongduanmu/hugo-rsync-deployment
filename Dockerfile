@@ -21,7 +21,7 @@ RUN apk add --no-cache --upgrade --no-progress \
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
-RUN addgroup -S appuser -g 1000 && adduser -u 1000 -S appuser -G appuser
-USER appuser
+#RUN addgroup -S appuser -g 1000 && adduser -u 1000 -S appuser -G appuser
+#USER appuser
 
 ENTRYPOINT ["/entrypoint.sh"]
