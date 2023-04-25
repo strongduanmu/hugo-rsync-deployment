@@ -16,7 +16,7 @@ RUN apt-get update
 RUN apt-get install \
         gettext \
         hugo \
-        openssh \
+        openssh-client \
         rsync
 
 ADD entrypoint.sh /
