@@ -25,6 +25,6 @@ RUN chmod 777 /tmp
 
 RUN addgroup --gid 1000 appuser && adduser --uid 1000 --gid 1000 appuser
 USER appuser
-chown :appuser /tmp
+RUN chown :appuser /tmp
 
 ENTRYPOINT ["/entrypoint.sh"]
