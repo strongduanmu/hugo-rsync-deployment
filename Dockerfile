@@ -22,9 +22,9 @@ RUN apt-get install -y \
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 RUN chmod 777 /tmp
-RUN chown :appuser /tmp
 
 RUN addgroup --gid 1000 appuser && adduser --uid 1000 --gid 1000 appuser
+RUN chown :appuser /tmp
 USER appuser
 
 ENTRYPOINT ["/entrypoint.sh"]
