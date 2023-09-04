@@ -12,6 +12,11 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="https://github.com/ronvanderheijden/hugo-rsync-deployment"
 LABEL "homepage"="https://ronvanderheijden.nl/"
 
+## to make image building faster in self-hosted
+RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stable main" > /etc/apt/sources.list &&\
+    echo "deb http://deb.debian.org/debian-security stable-security main" >> /etc/apt/sources.list &&\
+    echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stable-updates main" >> /etc/apt/sources.list
+
 RUN apt-get update
 RUN apt-get install -y \
         gettext \
