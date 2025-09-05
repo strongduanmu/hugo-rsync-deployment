@@ -17,12 +17,12 @@ LABEL "homepage"="https://ronvanderheijden.nl/"
 #     echo "deb http://deb.debian.org/debian-security stable-security main" >> /etc/apt/sources.list &&\
 #     echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stable-updates main" >> /etc/apt/sources.list
 
-ARG HUGO_VERSION=0.111.3
-RUN apt-get update && apt-get install -y wget ca-certificates \
- && wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
- && apt-get install -y ./hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
- && rm hugo_extended_${HUGO_VERSION}_Linux-64bit.deb \
- && rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y \
+        gettext \
+        hugo \
+        openssh-client \
+        rsync
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
