@@ -1,4 +1,4 @@
-FROM debian:stable-20230411-slim
+FROM debian:stable-slim
 
 LABEL "name"="Hugo rsync deployment"
 LABEL "maintainer"="Ron van der Heijden <r.heijden@live.nl>"
