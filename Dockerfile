@@ -19,6 +19,12 @@ LABEL "homepage"="https://ronvanderheijden.nl/"
 
 ARG HUGO_VERSION=0.111.3
 
+RUN apt-get update
+RUN apt-get install -y \
+        gettext \
+        openssh-client \
+        rsync
+
 RUN apt-get update \
  && apt-get install -y --no-install-recommends wget ca-certificates tar \
  && wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz \
