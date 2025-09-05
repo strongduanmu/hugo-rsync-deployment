@@ -1,4 +1,4 @@
-FROM debian:stable-20230411-slim
+FROM debian:stable-slim
 
 LABEL "name"="Hugo rsync deployment"
 LABEL "maintainer"="Ron van der Heijden <r.heijden@live.nl>"
@@ -12,23 +12,25 @@ LABEL "com.github.actions.color"="blue"
 LABEL "repository"="https://github.com/ronvanderheijden/hugo-rsync-deployment"
 LABEL "homepage"="https://ronvanderheijden.nl/"
 
-## to make image building faster in self-hosted
-# RUN echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stable main" > /etc/apt/sources.list &&\
-#     echo "deb http://deb.debian.org/debian-security stable-security main" >> /etc/apt/sources.list &&\
-#     echo "deb http://mirrors.tuna.tsinghua.edu.cn/debian/ stable-updates main" >> /etc/apt/sources.list
+# 先更新 key，避免 NO_PUBKEY 错误
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        gnupg \
+        debian-archive-keyring \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update
-RUN apt-get install -y \
+# 安装必须的软件
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
         gettext \
         hugo \
         openssh-client \
-        rsync
+        rsync \
+ && rm -rf /var/lib/apt/lists/*
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 RUN chmod 777 /tmp
-
-#RUN addgroup --gid 1000 appuser && adduser --uid 1000 --gid 1000 appuser
-#USER appuser
 
 ENTRYPOINT ["/entrypoint.sh"]
